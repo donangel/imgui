@@ -140,10 +140,24 @@
     static bool show_another_window = false;
     static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+    // 1. Show the big demo window
+    // (Most of the sample code is in ImGui::ShowDemoWindow()!
+    // You can browse its code to learn
+    // more about Dear ImGui!).
     if (show_demo_window)
         ImGui::ShowDemoWindow(&show_demo_window);
 
+    if (ImGui::BeginMenuBar())
+    {
+        if (ImGui::BeginMenu("Examples"))
+        {
+            static bool test;
+            ImGui::MenuItem("Test 1", NULL, &test);
+            ImGui::MenuItem("Test 2", NULL, &test);
+            ImGui::EndMenu();
+        }        //if (ImGui::MenuItem("MenuItem")) {} // You can also use MenuItem() inside a menu bar!
+        ImGui::EndMenuBar();
+    }
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
     {
         static float f = 0.0f;
