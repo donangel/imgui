@@ -12,7 +12,7 @@ int main(int argc, char * argv[]) {
     cout << endl << "You will have " << numberOfElements << " elements in your queue. Now enter each element!";
 
     vector<int> elements(numberOfElements);
-    for(size_t cur = 1; cur <= numberOfElements; cur++) {
+    for(size_t cur = 0; cur < numberOfElements; cur++) {
         cout << endl << "Enter element " << cur << ": ";
         cin >> elements[cur];
     }
