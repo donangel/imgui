@@ -9,7 +9,7 @@
             "type": "lldb",
             //"type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.out",
+            "program": "${fileDirname}/openfest.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
