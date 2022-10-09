@@ -3,15 +3,15 @@
         {
             "type": "cppbuild",
             "label": "C/C++: clang++ build active file",
-            "command": "/usr/bin/make",
-            "args": [ "all"
-/*                "-fcolor-diagnostics",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out",
-                "-std=c++17"*/
+                "-std=c++17"
             ],
             "options": {
                 "cwd": "${fileDirname}"
