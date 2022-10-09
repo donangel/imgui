@@ -52,3 +52,9 @@ examples/example_null/example_null
 examples/example_sdl_opengl2/example_sdl_opengl2
 examples/example_sdl_opengl3/example_sdl_opengl3
 examples/example_glfw_metal/example_glfw_metal
+/.DS_Store
+/Work/.DS_Store
+/.obsidian
+~$*.*x
+*.dSYM
+*.out
