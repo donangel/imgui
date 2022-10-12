@@ -70,7 +70,6 @@ class GLUT_Stuff {
                 throw("double initialization - no, no, no!");
 
             theContext = unique_ptr<GLUT_Stuff>(new GLUT_Stuff(argc, argv));
-
             // Create GLUT window
             glutInit(&argc, argv);
 
