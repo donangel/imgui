@@ -18,8 +18,11 @@ class GLUT_Stuff {
     int argc;
     char **argv;
 
+    // demo inferface elements
     ImVec4 clear_color;
     bool show_demo_window;
+    float f = 0.0f;
+    int counter = 0;
 
     protected:
         GLUT_Stuff(int argc, char **argv) :
@@ -34,7 +37,7 @@ class GLUT_Stuff {
             ImGui_ImplOpenGL2_NewFrame();
             ImGui_ImplGLUT_NewFrame();
 
-            my_display_code();
+            display();
 
             // Rendering
             ImGui::Render();
@@ -102,10 +105,7 @@ class GLUT_Stuff {
             ImGui_ImplOpenGL2_Init();
         }
 
-        float f = 0.0f;
-        int counter = 0;
-
-        void my_display_code() {
+        void display() {
             // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
             if (show_demo_window)
                 ImGui::ShowDemoWindow(&show_demo_window);
