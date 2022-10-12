@@ -15,20 +15,16 @@ using namespace std;
 
 class GLUT_Stuff {
 
-    int argc;
-    char **argv;
-
     // demo inferface elements
     ImVec4 clear_color;
     bool show_demo_window;
     float f = 0.0f;
-    int counter = 0;
 
     protected:
-        GLUT_Stuff(int argc, char **argv) :
-            argc(argc), argv(argv),
+        GLUT_Stuff() :
             clear_color(ImVec4(0.45f, 0.55f, 0.60f, 1.00f)),
-            show_demo_window(false) { }
+            show_demo_window(false)
+            { }
 
         static unique_ptr<GLUT_Stuff> theContext;
 
@@ -72,7 +68,7 @@ class GLUT_Stuff {
             if (theContext.get() != nullptr)
                 throw("double initialization - no, no, no!");
 
-            theContext = unique_ptr<GLUT_Stuff>(new GLUT_Stuff(argc, argv));
+            theContext = unique_ptr<GLUT_Stuff>(new GLUT_Stuff());
             // Create GLUT window
             glutInit(&argc, argv);
 
@@ -120,10 +116,8 @@ class GLUT_Stuff {
                 ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
                 ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
-                if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-                    counter++;
-                ImGui::SameLine();
-                ImGui::Text("counter = %d", counter);
+                if (ImGui::Button("Quit!"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+                    exit(0);
 
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
                 ImGui::End();
