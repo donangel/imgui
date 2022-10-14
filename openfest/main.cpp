@@ -20,10 +20,16 @@ class GLUT_Stuff {
     bool show_demo_window;
     float f = 0.0f;
 
+    // my data
+    int elementNum;
+    int test;
+    vector<int> elements;
+
     protected:
         GLUT_Stuff() :
             clear_color(ImVec4(0.45f, 0.55f, 0.60f, 1.00f)),
-            show_demo_window(false)
+            show_demo_window(false),
+            elementNum(0)
             { }
 
         static unique_ptr<GLUT_Stuff> theContext;
@@ -101,27 +107,56 @@ class GLUT_Stuff {
             ImGui_ImplOpenGL2_Init();
         }
 
+        void display_defaultHelloWorld() {
+            ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+            ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+            ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+
+            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+            ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+            if (ImGui::Button("Quit!"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+                exit(0);
+
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            ImGui::End();
+        }
+
+        void display_HelloWorld() {
+            ImGui::Begin("Numbers!");
+
+            ImGui::Text("Elements: "); ImGui::SameLine();
+            ImGui::InputInt("##elements", &elementNum);
+
+            if (elementNum > 0) {
+                if(elementNum != elements.size())
+                    elements.resize(elementNum);
+                for(int cur = 0; cur < elementNum; cur++) {
+                    ImGui::PushID(cur);
+                    ImGui::Text("Element %d: ", cur); ImGui::SameLine();
+                    ImGui::InputInt("##inputElement", &elements[cur]);
+                    ImGui::PopID();
+                }
+            } else {
+                ImGui::TextColored(ImVec4(1.0f,0.0f,0.0f,1.0f), "ERROR: Incorrect size: %d", elementNum);
+            }
+
+            if (ImGui::Button("Quit!"))
+                exit(0);
+
+            ImGui::End();
+        }
+
         void display() {
             // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
             if (show_demo_window)
                 ImGui::ShowDemoWindow(&show_demo_window);
 
             // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-            {
-                ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+            //display_defaultHelloWorld();
 
-                ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-                ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-
-                ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-                ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-                if (ImGui::Button("Quit!"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-                    exit(0);
-
-                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-                ImGui::End();
-            }
+            display_HelloWorld();
         }
 
 };
