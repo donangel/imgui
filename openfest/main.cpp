@@ -129,7 +129,7 @@ class GLUT_Stuff {
             ImGui::Text("Elements: "); ImGui::SameLine();
             ImGui::InputInt("##elements", &elementNum);
 
-            if (elementNum > 0) {
+            if (elementNum > 0 && elementNum <=100000) {
                 if(elementNum != elements.size())
                     elements.resize(elementNum);
                 for(int cur = 0; cur < elementNum; cur++) {
